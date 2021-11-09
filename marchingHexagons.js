@@ -122,6 +122,73 @@ const HexIndexLookup = {
     "[1,1,1,1,1,1]": [[0, 1, 2, 3, 4, 5, 0]],
 }
 
+const HexIndexLookupB = {
+    "[0,0,0,0,0,0]": [],
+    "[0,1,0,0,0,0]": [],
+    "[0,1,1,0,0,1]": [[1, 2, 3, 1]],
+    "[0,0,0,1,0,1]": [],
+    "[0,1,0,1,0,0]": [],
+    "[1,0,0,0,0,0]": [],
+    "[1,1,0,1,0,1]": [[5, 0, 1, 2, 5]],
+    "[0,0,1,0,1,0]": [],
+    "[1,1,0,0,1,0]": [[0, 1, 2, 0]],
+    "[0,0,1,0,0,0]": [],
+    "[1,1,0,0,0,0]": [[0, 1, 2, 0]],
+    "[1,0,1,0,0,0]": [],
+    "[0,0,1,0,0,1]": [],
+    "[0,0,0,0,1,0]": [],
+    "[1,0,0,1,1,0]": [[3, 4, 5,3]],
+    "[0,0,0,1,1,0]": [[3, 4, 5,3]],
+    "[0,0,0,1,0,0]": [],
+    "[0,0,0,0,0,1]": [],
+    "[1,0,0,1,0,0]": [],
+    "[1,0,1,0,0,1]": [[5, 0, 1,5]],
+    "[0,0,1,1,0,0]": [[2, 3, 4,2]],
+    "[1,1,0,0,0,1]": [[5, 0, 1, 2,5]],
+    "[0,1,1,1,0,1]": [[1, 2, 3, 4,1]],
+    "[1,0,1,0,1,0]": [],
+    "[1,1,0,1,0,0]": [[0, 1, 2,0]],
+    "[1,1,1,0,0,1]": [[5, 0, 1, 2, 3,5]],
+    "[1,0,1,1,0,0]": [[2, 3, 4,2]],
+    "[0,0,0,1,1,1]": [[3, 4, 5, 0,3]],
+    "[0,1,0,0,1,0]": [],
+    "[0,1,1,0,0,0]": [[1, 2, 3,1]],
+    "[0,0,0,0,1,1]": [[4, 5, 0,4]],
+    "[1,0,0,0,1,0]": [],
+    "[0,1,0,1,1,0]": [[3, 4, 5,3]],
+    "[0,1,0,0,0,1]": [],
+    "[1,1,1,1,0,0]": [[0, 1, 2,0], [2, 3, 4,2]],
+    "[0,0,1,0,1,1]": [[4, 5, 0,4]],
+    "[1,0,0,1,0,1]": [],
+    "[0,0,1,1,0,1]": [[2, 3, 4,2]],
+    "[1,1,1,0,0,0]": [[0, 1, 2, 3,0]],
+    "[1,0,0,0,0,1]": [[5, 0, 1,5]],
+    "[0,1,0,1,0,1]": [],
+    "[0,1,0,0,1,1]": [[4, 5, 0,4]],
+    "[0,0,1,1,1,0]": [[2, 3, 4, 5,2]],
+    "[0,1,1,0,1,0]": [[1, 2, 3,1]],
+    "[0,1,1,0,1,1]": [[1, 2, 3,1], [4, 5, 0,4]],
+    "[0,1,1,1,0,0]": [[1, 2, 3, 4,1]],
+    "[1,1,0,0,1,1]": [[4, 5, 0,4], [0, 1, 2,0]],
+    "[0,1,1,1,1,0]": [[1, 2, 3,1], [3, 4, 5,3]],
+    "[1,0,0,0,1,1]": [[4, 5, 0, 1,4]],
+    "[1,0,0,1,1,1]": [[3, 4, 5,3], [5, 0, 1,5]],
+    "[1,0,1,1,1,0]": [[2, 3, 4, 5,2]],
+    "[1,1,0,1,1,0]": [[0, 1, 2,0], [3, 4, 5,3]],
+    "[0,0,1,1,1,1]": [[2, 3, 4,2], [4, 5, 0,4]],
+    "[1,1,1,0,1,0]": [[0, 1,2,3,0]],
+    "[0,1,0,1,1,1]": [[3, 4, 5, 0,3]],
+    "[1,1,1,1,1,0]": [[0, 1, 2,0], [3, 4, 5,3]],
+    "[1,0,1,0,1,1]": [[4, 5, 0, 1,4]],
+    "[1,1,1,1,0,1]": [[5, 0, 1,5], [2, 3, 4,2]],
+    "[0,1,1,1,1,1]": [[1, 2, 3,1], [4, 5, 0,4]],
+    "[1,1,1,0,1,1]": [[4, 5, 0,4], [1, 2, 3,1]],
+    "[1,0,1,1,1,1]": [[2, 3, 4,2], [5, 0, 1,5]],
+    "[1,0,1,1,0,1]": [[5, 0, 1,5], [2, 3, 4,2]],
+    "[1,1,0,1,1,1]": [[3, 4, 5,3], [0, 1, 2,0]],
+    "[1,1,1,1,1,1]": [[0, 1, 2, 3, 4, 5, 0]],
+}
+
 
 class Chunk {
     constructor(x, y) {
@@ -173,40 +240,41 @@ class Chunk {
         return false
     }
     draw(camX, camY) {
+        ctx.strokeStyle = "grey"
         for (var x = 0; x < gridDimensions.width; x++) {
             for (var y = 0; y < gridDimensions.height; y++) {
                 var cell = this.data[x][y]
                 if (cell > 0) {
-                    if (debug[0]) {
-                        var walls = HexIndexLookup["[1,1,1,1,1,1]"]
+                    // if (debug[0]) {
+                    var walls = HexIndexLookupB["[1,1,1,1,1,1]"]
 
-                        for (var i = 0; i < walls.length; i++) {
-                            var directions = walls[i]
-                            ctx.beginPath()
-                            var xOffset = HexVertexLookup[directions[0]][0]
-                            var yOffset = HexVertexLookup[directions[0]][1]
+                    for (var i = 0; i < walls.length; i++) {
+                        var directions = walls[i]
+                        ctx.beginPath()
+                        var xOffset = HexVertexLookup[directions[0]][0]
+                        var yOffset = HexVertexLookup[directions[0]][1]
+                        var xPos = ((x * tileSize) * tileWidth) + ((xOffset + ((y % 2 !== 0) && tileWidth / 2 || 0)) * tileSize) - camX + this.gridOffset.x
+                        var yPos = ((y * tileSize) * (tileDepth * .75)) + (yOffset * tileSize) - camY + this.gridOffset.y
+                        ctx.moveTo((xPos), (yPos))
+                        for (var j = 1; j < directions.length; j++) {
+                            xOffset = HexVertexLookup[directions[j]][0]
+                            yOffset = HexVertexLookup[directions[j]][1]
                             var xPos = ((x * tileSize) * tileWidth) + ((xOffset + ((y % 2 !== 0) && tileWidth / 2 || 0)) * tileSize) - camX + this.gridOffset.x
                             var yPos = ((y * tileSize) * (tileDepth * .75)) + (yOffset * tileSize) - camY + this.gridOffset.y
-                            ctx.moveTo(xPos, yPos)
-                            for (var j = 1; j < directions.length; j++) {
-                                xOffset = HexVertexLookup[directions[j]][0]
-                                yOffset = HexVertexLookup[directions[j]][1]
-                                var xPos = ((x * tileSize) * tileWidth) + ((xOffset + ((y % 2 !== 0) && tileWidth / 2 || 0)) * tileSize) - camX + this.gridOffset.x
-                                var yPos = ((y * tileSize) * (tileDepth * .75)) + (yOffset * tileSize) - camY + this.gridOffset.y
-                                ctx.lineTo(xPos, yPos)
-                            }
-                            ctx.fillStyle = "grey"
-                            ctx.fill()
-                            ctx.closePath()
+                            ctx.lineTo(xPos, yPos)
                         }
+                        ctx.fillStyle = "grey"
+                        ctx.fill()
+                        ctx.stroke()
+                        ctx.closePath()
                     }
+                    // }
                     continue
                 }
 
                 var neighbors = JSON.stringify(getNeighbors(x, y, this.data, [this.coords.x, this.coords.y]))
 
-                var walls = HexIndexLookup[neighbors]
-
+                var walls = HexIndexLookupB[neighbors]
                 for (var i = 0; i < walls.length; i++) {
                     var directions = walls[i]
                     ctx.beginPath()
@@ -222,6 +290,8 @@ class Chunk {
                         var yPos = ((y * tileSize) * (tileDepth * .75)) + (yOffset * tileSize) - camY + this.gridOffset.y
                         ctx.lineTo(xPos, yPos)
                     }
+                    ctx.fillStyle = "grey"
+                    ctx.fill()
                     ctx.stroke()
                     ctx.closePath()
                 }
@@ -333,7 +403,7 @@ function drawChunks() {
             ctx.fillRect(chunk.gridOffset.x - camera.x + 10, chunk.gridOffset.y - camera.y + 10, (gridDimensions.width * tileWidth * tileSize) - 20, (gridDimensions.height * tileDepth * tileSize * .75) - 20)
         }
     }
-    ctx.lineWidth = 5
+    ctx.lineWidth = 1
     ctx.strokeStyle = "black"
     ctx.lineJoin = "round"
     ctx.lineCap = "round"
@@ -387,7 +457,6 @@ function moveCamera() {
 }
 
 document.addEventListener('keydown', (e) => {
-    // console.log(e.key)
     switch (e.key) {
         case "w":
             controllerState.w = true
